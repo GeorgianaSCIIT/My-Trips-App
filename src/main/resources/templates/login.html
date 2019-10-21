@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <meta content="spring-boot thymeleaf | Register " name="description">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/site_login.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/static/css/site_login.css}" type="text/css"/>
+</head>
+<body>
+<div class="bg-img">
+    <div class="container">
+        <div class= pagination-centered >
+            <h2 >Welcome to My Trips App!</h2>
+        </div>
+        <div class="login-register-form-section">
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="login" role="tabpanel">
+
+                    <div class="alert alert-danger alert-dismissable" th:if="${param.error}">
+                        <button aria-hidden="true" class="close" data-dismiss="alert"
+                                type="button">&times;
+                        </button>
+                        Invalid username or password.
+                    </div>
+                    <form class="form-horizontal" method="post" th:action="@{/login}">
+                        <div class="form-group ">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                <input autocomplete="off" class="form-control" name="username"
+                                       placeholder="Username" required="required" type="text" value=""/>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-key"></i></div>
+                                <input class="form-control" name="password" placeholder="Password" required="required"
+                                       type="password"/>
+                            </div>
+                        </div>
+                        <input class="btn btn-success btn-custom" type="submit" value="Login"/>
+                    </form>
+                    <div class="form-group">
+                        <input id="rememberMe" type="checkbox"/>
+                        <label for="rememberMe">Remember Me </label>
+                        <a class="pull-right" href="#">Forgot password?</a>
+                    </div>
+                    <br><br>
+                    <form>
+                        <div class="form-footer">
+                                <div class="col-xs-5 col-sm-5 col-md-5">
+                                    <div class= pagination-centered>
+                                        <i class="fa fa-check"></i> <a th:href="@{/register}"> Not a member? Register here! </a>
+                                    </div>
+                                </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</body>
+</html>

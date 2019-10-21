@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Add New Trip</title>
+    <meta content="spring-boot thymeleaf | Home " name="description">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-datetimepicker.min.css}" rel="stylesheet" media="screen"/>
+    <link rel="stylesheet" th:href="@{/static/css/user.css}" type="text/css"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/user.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">My Travel Trips</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class=><a href="#">Profile</a></li>
+            <li class="active"><a href="#">My Trips</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <a>
+                <li>
+                    <form method="post" th:action="@{/logout}">
+                        <input class="btn btn-link" type="submit" value="Sign Out"/>
+                    </form>
+                </li>
+            </a>
+        </ul>
+    </div>
+</nav>
+<div class="fluid-container">
+    <div class="user">
+        <h4 th:inline="text"> Welcome [[${#httpServletRequest.remoteUser}]]!</h4>
+    </div>
+    <div class="container">
+        <div align="center">
+            <h4>New  Trip</h4>
+        </div>
+        <form action="#" autocomplete="off" method="post" th:action="@{/save}" th:object="${newtrip}" enctype="multipart/form-data">
+            <input type="text" th:field="*{id}" hidden = "hidden"/>
+            <div class="form-group ">
+                <label for="tripname">Trip Name:</label>
+                <input id="tripname" required="required" th:field="*{name}" type="text" autocomplete="off"/>
+            </div>
+            <div class="form-group ">
+                <label for="startDate">Start Date:</label>
+                <input id="startDate" required="required" th:field="*{startDate}" type="text"/>
+            </div>
+            <div class="form-group ">
+                <label for="endDate">End Date:</label>
+                <input id="endDate" required="required" th:field="*{endDate}" type="text"/>
+            </div>
+            <div class="form-group">
+                <label for="impressions">Impressions</label>
+                <textarea  id="impressions" required="required" rows="5" style="width:100%"
+                           th:field="(*{impression})" type="text" autocomplete="off"></textarea>
+            </div>
+            <br>
+            <div class = "form-group">
+                <label for="file1">Choose Photo 1</label>
+                <input type="file" id="file1" name="file"/>
+            </div>
+            <div class = "form-group">
+                <label for="file2">Choose Photo 2</label>
+                <input type="file" id="file2" name="file"/><br/>
+            </div>
+            <div class="form-group ">
+                <label for="location">Location:</label>
+                <input id="location" required="required" th:field="*{location}" type="text" autocomplete="off"/>
+            </div>
+            <br>
+            <div align="center">
+                <form>
+                    <button class="btn btn-success"
+                            type="submit" value="Save">Save
+                    </button>
+                </form>
+            </div>
+        </form>
+    </div>
+</div>
+<script th:src="@{/static/js/moment-with-locales.js}"></script>
+<script th:src="@{/static/js/bootstrap-datetimepicker.min.js}"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#startDatePicker').datetimepicker({
+            defaultDate: 'now',
+            viewMode: 'days',
+            format: 'DD/MM/YYYY'
+        });
+    });
+</script>
+</body>
+</html>

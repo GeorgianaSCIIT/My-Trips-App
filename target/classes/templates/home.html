@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+    <meta content="spring-boot thymeleaf | Home " name="description">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Welcome to My Trips</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class=><a href="userprofile">Profile</a></li>
+            <li class="active"><a href="#">My Trips</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <a>
+                <li>
+                    <form method="post" th:action="@{/logout}">
+                        <input class="btn btn-link" type="submit" value="Sign Out"/>
+                    </form>
+                </li>
+            </a>
+        </ul>
+    </div>
+</nav>
+<div class="container fluid">
+    <div>
+        <h4 th:inline="text"> Welcome [[${#httpServletRequest.remoteUser}]]!</h4>
+    </div>
+    <br>
+    <div class="container" name="nav-container">
+        <div class="row">
+            <div class="col-md-9">
+                <label for="trips">Trips</label>
+                <div class="form-group">
+                    <select id="trips" method="get" onchange="window.location.href='/newhome?id='+this.value"
+                            style="width:85%;height:50px; border-radius:4px;">
+                        <option th:each="trip : ${trips}"
+                                th:selected="${trip.id == selectedId}"
+                                th:text="${trip.name}"
+                                th:value="${trip.id}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <form action="new">
+                    <button class="btn btn-light" style="width:80px; height:50px; border-radius:4px;"
+                            type="submit" value="Add">Add
+                    </button>
+                </form>
+            </div>
+            <div class="col-md-1">
+                <form th:action="@{'/edit/' + ${currentTrip.id}}">
+                    <button class="btn btn-info" style="width:80px;height:50px; border-radius:4px;"
+                            type="submit" value="Edit">Edit
+                    </button>
+                </form>
+            </div>
+            <div class="col-md-1">
+                <form th:action="@{'/delete/' + ${currentTrip.id}}">
+                    <button class="btn btn-warning" style="width:80px;height:50px; border-radius:4px;"
+                            type="submit" value="Delete">Delete
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form>
+                    <div class="form-group">
+                        <label for="impressions">Impressions</label>
+                        <textarea class="form-control" rows="5" cols="7" id="impressions" readonly style="background:#ffffff;">
+                            [[${currentTrip.impression}]]
+                        </textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <label>Photos</label>
+                <div class="row-fluid">
+                    <div class="col-sm-6">
+                        <div class="thumbnail" id="photos" style="width:100%; height:300px;">
+                            <a href="#" style="width:100%; height:300px;">
+                               <img th:src="@{/files/{image}(image=${currentTrip.photo1})}" style="width:100%; height:300px;">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="thumbnail"  style="width:100%; height:300px;">
+                            <a href="#" style="width:100%; height:300px;">
+                                <img th:src="@{/files/{image}(image=${currentTrip.photo2})}" style="width:100%; height:300px;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="startdate">Start date</label>
+                <input th:value="${currentTrip.startDate}" type="text" style="width:100%;
+                height:50px; border: 1px solid #c2c2a3 ; border-radius:4px;" id="startdate" readonly/>
+                <label for="enddate">End date</label>
+                <input th:value="${currentTrip.endDate}" type="text" style="width:100%; height:50px;
+                border: 1px solid #c2c2a3; border-radius:4px;" id="enddate" readonly/>
+                <label for="location">Location</label>
+                <input th:value="${currentTrip.Location}" type="text" style="width:100%; height:50px;
+                border: 1px solid #c2c2a3; border-radius:4px" id="location" readonly/>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</body>
+</html>

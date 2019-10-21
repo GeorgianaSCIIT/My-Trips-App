@@ -1,0 +1,95 @@
+body, html {
+  height: 100%;
+}
+
+* {aurora
+  box-sizing: border-box;
+}
+
+.bg-img {
+  /* The image used */
+  background-image: url("../images/venice.jpg");
+
+  /* Control the height of the image */
+  min-height: 750px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Add styles to the link */
+a:link {
+  text-decoration: none;
+  font-color: #000000;
+}
+
+/* Add styles to the form container */
+.container {
+  position: absolute;
+  left: 0;
+  margin: 100px;
+  max-width: 500px;
+  padding: 16px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  border-radius: 12px;
+  opacity: 0.8;
+  filter: alpha(opacity=70);;
+}
+
+/* Add styles to the register form container */
+.container-register {
+  position: absolute;
+  left: 550px;
+  top: 10px;
+  width: 350px;
+  height: 700px;
+  padding: 15px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  border-radius: 12px;
+  opacity: 0.8;
+  filter: alpha(opacity=70);
+}
+.pagination-centered{
+text-align:center;
+}
+
+
+/* Full-width input fields */
+  input[type=text], input[type=password], input[type=email], input[type=tel] {
+  width: 90%;
+  padding: 10px;
+  margin: 5px  5px 20px;
+  font-size: 12px;
+  border: 1px solid #001a66;
+  border-radius: 12px;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #4da6ff;
+  color: white;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 99%;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 3;
+  border-radius: 12px;
+}

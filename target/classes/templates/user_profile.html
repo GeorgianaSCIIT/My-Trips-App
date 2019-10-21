@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Home</title>
+    <meta content="spring-boot thymeleaf | Home " name="description">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/static/css/user.css}" type="text/css"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/user.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">My Travel Trips</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Profile</a></li>
+            <li><a href="newhome">My Trips</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <a>
+                <li>
+                    <form method="post" th:action="@{/logout}">
+                        <input class="btn btn-link" type="submit" value="Sign Out"/>
+                    </form>
+                </li>
+            </a>
+        </ul>
+    </div>
+</nav>
+<div class="fluid-container">
+<div class="container">
+    <div class="row">
+        <div class = "col-sm-9">
+            <div>
+                <h4 th:inline="text"> [[${#httpServletRequest.remoteUser}]]' s Profile</h4>
+            </div>
+        </div>
+        <div class = col-sm-3>
+            <!--<form th:action="@{'/editUser/' + ${currentUser.id}}">-->
+            <form>
+                <button class="btn btn-info" type="submit" value="Edit">Edit
+                </button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <!--<input type="text" th:field="*{id}" hidden = "hidden"/>-->
+    <div class="form-group ">
+        <label for="firstname">First Name</label>
+        <input id="firstname" th:field="*{currentUser.firstName}" type="text" readonly/>
+    </div>
+    <div class="form-group ">
+        <label for="lastname">First Name</label>
+        <input id="lastname" th:field="*{currentUser.lastName}" type="text" readonly/>
+    </div>
+    <div class="form-group ">
+        <label for="username">Username</label>
+        <input id="username" th:field="*{currentUser.userName}" type="text" readonly/>
+    </div>
+    <div class="form-group ">
+        <label for="email">Email</label>
+        <input id="email" th:field="*{currentUser.email}" type="email" readonly/>
+    </div>
+    <!--<div class="form-group ">
+        <label for="password">Password</label>
+        <input id="password" th:field="*{currentUser.password}" type="password" readonly/>
+    </div>-->
+    <div class="form-group ">
+        <label for="city">City</label>
+        <input id="city" th:field="*{currentUser.city}" type="text" readonly/>
+    </div>
+    <div class="form-group ">
+        <label for="adress">Adress</label>
+        <input id="adress" th:field="*{currentUser.adress}" type="text" readonly/>
+    </div>
+    <div class="form-group ">
+        <label for="phone">Phone</label>
+        <input id="phone" th:field="*{currentUser.phoneNumber}" type="tel" readonly/>
+    </div>
+    </div>
+</div>
+<script src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</body>
+</html>
